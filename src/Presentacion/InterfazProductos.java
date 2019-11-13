@@ -2,11 +2,15 @@
 package Presentacion;
 
 import Negocios.NegocioProductos;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class InterfazProductos extends javax.swing.JFrame {
 
-    public InterfazProductos() {
+    public InterfazProductos() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         initComponents();
+        setLocationRelativeTo(null);
+        LLenarTabla();
     }
     
     @SuppressWarnings("unchecked")
@@ -44,19 +48,37 @@ public class InterfazProductos extends javax.swing.JFrame {
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Codigo Producto", "Codigo de Barras", "Categoria", "Descripcion", "Precio", "Existencia", "Proveedor"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblProductos);
+        if (tblProductos.getColumnModel().getColumnCount() > 0) {
+            tblProductos.getColumnModel().getColumn(0).setResizable(false);
+            tblProductos.getColumnModel().getColumn(1).setResizable(false);
+            tblProductos.getColumnModel().getColumn(2).setResizable(false);
+            tblProductos.getColumnModel().getColumn(3).setResizable(false);
+            tblProductos.getColumnModel().getColumn(4).setResizable(false);
+            tblProductos.getColumnModel().getColumn(5).setResizable(false);
+            tblProductos.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 920, 250));
 
+        btnNuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Add New_25px.png"))); // NOI18N
         btnNuevoProducto.setText("Nuevo Producto");
         btnNuevoProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,14 +87,16 @@ public class InterfazProductos extends javax.swing.JFrame {
         });
         jPanel1.add(btnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
 
+        btnEditarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Edit_25px.png"))); // NOI18N
         btnEditarProducto.setText("Editar Producto");
-        jPanel1.add(btnEditarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
+        jPanel1.add(btnEditarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, -1, -1));
 
+        btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Search_25px.png"))); // NOI18N
         btnBuscarProducto.setText("Buscar");
-        jPanel1.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 40, -1, -1));
+        jPanel1.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 40, -1, -1));
 
         btnFiltrarProductos.setText("Filtrar");
-        jPanel1.add(btnFiltrarProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 40, -1, -1));
+        jPanel1.add(btnFiltrarProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,7 +121,15 @@ public class InterfazProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProductoActionPerformed
-        
+        try {
+            
+            NuevoProducto np = new NuevoProducto();
+            np.setVisible(true);
+            this.dispose();
+            
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(InterfazProductos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
     private void LLenarTabla() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
@@ -131,8 +163,13 @@ public class InterfazProductos extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new InterfazProductos().setVisible(true);
+                try {
+                    new InterfazProductos().setVisible(true);
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+                    Logger.getLogger(InterfazProductos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
