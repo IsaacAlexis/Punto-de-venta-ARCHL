@@ -83,9 +83,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
 
-        InterfazProductos prod = new InterfazProductos();
-        prod.setVisible(true);
-        this.dispose();
+        try {
+            InterfazProductos prod = new InterfazProductos();
+            prod.setVisible(true);
+            this.dispose();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btnProductosActionPerformed
 
