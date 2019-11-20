@@ -34,7 +34,6 @@ public class InterfazProveedores extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        btnFiltro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,11 +96,7 @@ public class InterfazProveedores extends javax.swing.JFrame {
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Search_25px.png"))); // NOI18N
         btnBuscar.setText("Buscar");
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, -1, -1));
-
-        btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Filter_32.png"))); // NOI18N
-        btnFiltro.setText("Filtrar");
-        jPanel1.add(btnFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, 100, 30));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, -1, -1));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -150,7 +145,6 @@ public class InterfazProveedores extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnFiltro;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
