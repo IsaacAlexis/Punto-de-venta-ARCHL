@@ -365,8 +365,13 @@ public class NuevoProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPrecioProdNPKeyTyped
 
     private void btnCancelarNPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarNPActionPerformed
-        
-        this.dispose();
+        try {
+            InterfazProductos iprodu = new InterfazProductos();
+            iprodu.setVisible(true);
+            this.dispose();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(NuevoProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCancelarNPActionPerformed
 
     private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
