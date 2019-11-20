@@ -1,9 +1,11 @@
 
 package Presentacion;
 
+import Datos.ProductosSQL;
 import Negocios.NegocioProductos;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class InterfazProductos extends javax.swing.JFrame {
 
@@ -11,6 +13,7 @@ public class InterfazProductos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         LLenarTabla();
+        btnCancelarBusProd.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -23,9 +26,8 @@ public class InterfazProductos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductos = new javax.swing.JTable();
         btnNuevoProducto = new javax.swing.JButton();
-        btnEditarProducto = new javax.swing.JButton();
         btnBuscarProducto = new javax.swing.JButton();
-        btnFiltrarProductos = new javax.swing.JButton();
+        btnCancelarBusProd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,18 +87,25 @@ public class InterfazProductos extends javax.swing.JFrame {
                 btnNuevoProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
-
-        btnEditarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Edit_25px.png"))); // NOI18N
-        btnEditarProducto.setText("Editar Producto");
-        jPanel1.add(btnEditarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, -1, -1));
+        jPanel1.add(btnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
         btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Search_25px.png"))); // NOI18N
         btnBuscarProducto.setText("Buscar");
-        jPanel1.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 40, -1, -1));
+        btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarProductoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, -1, -1));
 
-        btnFiltrarProductos.setText("Filtrar");
-        jPanel1.add(btnFiltrarProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, -1, -1));
+        btnCancelarBusProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Find and Replace_25px.png"))); // NOI18N
+        btnCancelarBusProd.setText("Cancelar Busqueda");
+        btnCancelarBusProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarBusProdActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCancelarBusProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,6 +140,36 @@ public class InterfazProductos extends javax.swing.JFrame {
             Logger.getLogger(InterfazProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnNuevoProductoActionPerformed
+
+    private void btnCancelarBusProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarBusProdActionPerformed
+
+        try {
+            LLenarTabla();
+            btnCancelarBusProd.setVisible(false);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(NuevoProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnCancelarBusProdActionPerformed
+
+    private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
+        String v = JOptionPane.showInputDialog(null,"Introduzca el nombre del Producto");
+        
+        if(v != null){
+            try {
+                ProductosSQL prod = new ProductosSQL();
+                prod.setBus(v);
+
+                NegocioProductos np = new NegocioProductos();
+                np.PuenteMostrarTablaBuscar(tblProductos,prod);
+
+                btnCancelarBusProd.setVisible(true);
+
+            } catch (IllegalAccessException | ClassNotFoundException | InstantiationException ex) {
+                JOptionPane.showMessageDialog(null,"Error "+ex);
+            }
+        }
+    }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void LLenarTabla() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
         NegocioProductos nplt = new NegocioProductos();
@@ -176,8 +215,7 @@ public class InterfazProductos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarProducto;
-    private javax.swing.JButton btnEditarProducto;
-    private javax.swing.JButton btnFiltrarProductos;
+    private javax.swing.JButton btnCancelarBusProd;
     private javax.swing.JButton btnNuevoProducto;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;

@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 public class MantenimientoProductosSQL {
     
@@ -94,12 +95,6 @@ public class MantenimientoProductosSQL {
             modelo.addColumn("Existencia");
             modelo.addColumn("Proveedor");
             
-//            for (int i = 1; i <= col; i++) {
-//                modelo.addColumn(rsm.getColumnLabel(i));//Llena el encabezado de la tabla con los nombres de los campos de la base de datos
-//            }
-
-
-            
             while(rs.next()){//Mientras existan registros
                 String fila[] = new String[col];
                 for (int j = 0; j < col; j++) {
@@ -109,6 +104,29 @@ public class MantenimientoProductosSQL {
             }
             
             tblDatos.setModel(modelo);
+            
+            TableColumn colCod = tblDatos.getColumn("Codigo del Producto");
+            colCod.setPreferredWidth(100);
+            colCod.setResizable(false);
+            TableColumn colCodB = tblDatos.getColumn("Codigo de Barras");
+            colCodB.setPreferredWidth(100);
+            colCodB.setResizable(false);
+            TableColumn colCat = tblDatos.getColumn("Categoria");
+            colCat.setPreferredWidth(75);
+            colCat.setResizable(false);
+            TableColumn colDes = tblDatos.getColumn("Descripcion");
+            colDes.setPreferredWidth(250);
+            colDes.setResizable(false);
+            TableColumn colPre = tblDatos.getColumn("Precio");
+            colPre.setPreferredWidth(75);
+            colPre.setResizable(false);
+            TableColumn colEx = tblDatos.getColumn("Existencia");
+            colEx.setPreferredWidth(85);
+            colEx.setResizable(false);
+            TableColumn colPro = tblDatos.getColumn("Proveedor");
+            colPro.setPreferredWidth(75);
+            colPro.setResizable(false);
+            
             rs.close();
             bd.CerrarConexion();
             
@@ -139,11 +157,6 @@ public class MantenimientoProductosSQL {
             modelo.addColumn("Existencia");
             modelo.addColumn("Proveedor");
             
-            
-//            for (int i = 1; i < col; i++) {
-//                modelo.addColumn(rsm.getColumnLabel(i));
-//            }
-            
             while(rs.next()){
                 String fila[] = new String[col];
                 for (int j = 0; j < col; j++) {
@@ -153,6 +166,29 @@ public class MantenimientoProductosSQL {
             }
             
             tblDatos.setModel(modelo);
+            
+            TableColumn colCod = tblDatos.getColumn("Codigo del Producto");
+            colCod.setPreferredWidth(100);
+            colCod.setResizable(false);
+            TableColumn colCodB = tblDatos.getColumn("Codigo de Barras");
+            colCodB.setPreferredWidth(100);
+            colCodB.setResizable(false);
+            TableColumn colCat = tblDatos.getColumn("Categoria");
+            colCat.setPreferredWidth(75);
+            colCat.setResizable(false);
+            TableColumn colDes = tblDatos.getColumn("Descripcion");
+            colDes.setPreferredWidth(250);
+            colDes.setResizable(false);
+            TableColumn colPre = tblDatos.getColumn("Precio");
+            colPre.setPreferredWidth(75);
+            colPre.setResizable(false);
+            TableColumn colEx = tblDatos.getColumn("Existencia");
+            colEx.setPreferredWidth(85);
+            colEx.setResizable(false);
+            TableColumn colPro = tblDatos.getColumn("Proveedor");
+            colPro.setPreferredWidth(75);
+            colPro.setResizable(false);
+            
             rs.close();
             bd.CerrarConexion();
             

@@ -17,7 +17,7 @@ public class Conexion_SQL {
         String controlador = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
         Class.forName(controlador).newInstance();
         
-        String url = "jdbc:sqlserver://IsaacAlexis:1433;databaseName=BDPuntoVenta";
+        String url = "jdbc:sqlserver://DESKTOP-B49PDPN:1433;databaseName=BDPuntoVenta";
         String user = "sa";
         String password = "123";
         conexion = DriverManager.getConnection(url,user,password);

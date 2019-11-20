@@ -22,6 +22,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnProductos = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        btnProveedores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
@@ -56,6 +57,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 290, -1, -1));
 
+        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Supplier_96px.png"))); // NOI18N
+        btnProveedores.setText("Proveedores");
+        btnProveedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProveedoresActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,11 +95,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
 
-        InterfazProductos prod = new InterfazProductos();
-        prod.setVisible(true);
-        this.dispose();
+        try {
+            InterfazProductos prod = new InterfazProductos();
+            prod.setVisible(true);
+            this.dispose();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btnProductosActionPerformed
+
+    private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
+        try {
+            InterfazProveedoresSQL ipro = new InterfazProveedoresSQL();
+            ipro.setVisible(true);
+            this.dispose();
+        } catch (InstantiationException | ClassNotFoundException | IllegalAccessException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnProveedoresActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -99,6 +125,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnProductos;
+    private javax.swing.JButton btnProveedores;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
